@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: portfolio-backend
+    runtime: python
+    buildCommand: |
+      python -m pip install --upgrade pip
+      pip install -r backend/requirements.txt
+    startCommand: cd backend && gunicorn app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.0
+      - key: PORT
+        value: 10000
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: PIN
+        sync: false
